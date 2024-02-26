@@ -1,5 +1,5 @@
 import './style.css';
-import {ToDoItem} from './todos'
+import {ToDoItem, addToDoItemToProject} from './todos'
 import {Project} from './project'
 import {showToDoForm, showProjectForm} from './domUpdate'
 

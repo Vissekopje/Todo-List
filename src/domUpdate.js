@@ -1,4 +1,6 @@
 const content = document.getElementById('content')
+import {addToDoItemToProject} from './todos'
+import {addProject} from './project'
 
 function showToDoForm(){
 const toDoFormContainer = document.createElement('div')
@@ -88,6 +90,8 @@ const cancelButton = document.createElement('button')
 cancelButton.class = 'cancel-todo'
 cancelButton.textContent = 'Cancel'
 
+confirmButton.addEventListener('click', (event) => addToDoItemToProject(event))
+
 const confirmCancelRow = document.createElement('div')
 confirmCancelRow.className = 'form-row'
 confirmCancelRow.appendChild(confirmButton)
@@ -144,6 +148,8 @@ confirmButton.type = 'submit'
 confirmButton.class = 'submit-todo'
 confirmButton.textContent = 'Submit'
 
+confirmButton.addEventListener('click', (event) => addProject(event))
+
 const cancelButton = document.createElement('button')
 cancelButton.class = 'cancel-todo'
 cancelButton.textContent = 'Cancel'
@@ -159,7 +165,6 @@ form.appendChild(confirmCancelRow)
 
 projectContainer.appendChild(form)
 content.appendChild(projectContainer)
-
 }
 
 // function that is called when new project is added

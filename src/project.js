@@ -1,4 +1,4 @@
-
+const ProjectList = []
 class Project{
     constructor(title, color){
         this.title = title
@@ -13,6 +13,18 @@ class Project{
     }
 }
 
+function addProject(event){
+    event.preventDefault()
+    const projectTitle = document.getElementById("title")
+    const projectColor = document.getElementById("color")
+    
+    const newProject = new Project(projectTitle.value, projectColor.value)
+    // add function that finds active project
+    ProjectList.push(newProject)
+    // function that updates dom
+    console.log(ProjectList)
+}
 export{
-    Project
+    Project,
+    addProject
 }
