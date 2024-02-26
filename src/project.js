@@ -1,7 +1,7 @@
 
 class Project{
-    constructor(name, color){
-        this.name = name
+    constructor(title, color){
+        this.title = title
         this.color = color
     }
     addProjectToMyProjects(){

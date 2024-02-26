@@ -79,14 +79,89 @@ priorityRow.className = 'form-row'
 priorityRow.appendChild(priorityLabel)
 priorityRow.appendChild(prioritySelect)
 
+const confirmButton = document.createElement('button')
+confirmButton.type = 'submit'
+confirmButton.class = 'submit-todo'
+confirmButton.textContent = 'Submit'
+
+const cancelButton = document.createElement('button')
+cancelButton.class = 'cancel-todo'
+cancelButton.textContent = 'Cancel'
+
+const confirmCancelRow = document.createElement('div')
+confirmCancelRow.className = 'form-row'
+confirmCancelRow.appendChild(confirmButton)
+confirmCancelRow.appendChild(cancelButton)
+
 form.appendChild(titleRow)
 form.appendChild(descriptionRow)
 form.appendChild(dueDateRow)
 form.appendChild(priorityRow)
+form.appendChild(confirmCancelRow)
 
 toDoFormContainer.appendChild(form)
 content.appendChild(toDoFormContainer)
 }
+
+
+function showProjectForm(){
+const projectContainer = document.createElement('div')
+const form = document.createElement('form')
+form.className = 'projectform'
+
+const titleLabel = document.createElement('label');
+titleLabel.htmlFor = 'title'
+titleLabel.textContent = 'Title:'
+
+const titleInput = document.createElement('input')
+titleInput.type = 'text'
+titleInput.id = 'title'
+titleInput.name = 'title'
+titleInput.required = true
+
+const titleRow = document.createElement('div')
+titleRow.className = 'form-row'
+titleRow.appendChild(titleLabel)
+titleRow.appendChild(titleInput)
+
+const colorLabel = document.createElement('label');
+colorLabel.htmlFor = 'color'
+colorLabel.textContent = 'Color:'
+
+const colorInput = document.createElement('input')
+colorInput.type = 'color'
+colorInput.id = 'color'
+colorInput.name = 'color'
+colorInput.required = false
+
+const colorRow = document.createElement('div')
+colorRow.className = 'form-row'
+colorRow.appendChild(colorLabel)
+colorRow.appendChild(colorInput)
+
+const confirmButton = document.createElement('button')
+confirmButton.type = 'submit'
+confirmButton.class = 'submit-todo'
+confirmButton.textContent = 'Submit'
+
+const cancelButton = document.createElement('button')
+cancelButton.class = 'cancel-todo'
+cancelButton.textContent = 'Cancel'
+
+const confirmCancelRow = document.createElement('div')
+confirmCancelRow.className = 'form-row'
+confirmCancelRow.appendChild(confirmButton)
+confirmCancelRow.appendChild(cancelButton)
+
+form.appendChild(titleRow)
+form.appendChild(colorRow)
+form.appendChild(confirmCancelRow)
+
+projectContainer.appendChild(form)
+content.appendChild(projectContainer)
+
+}
+
 // function that is called when new project is added
 
 // function that is called when new to do item is added
@@ -102,5 +177,6 @@ content.appendChild(toDoFormContainer)
 // function that is called when a project is deleted (might add pop-up)
 
 export{
-    showToDoForm
+    showToDoForm,
+    showProjectForm
 }
