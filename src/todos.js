@@ -1,3 +1,5 @@
+import {getCurrentProject, getCurrentListOfProjects} from './project'
+
 const ToDoList = [{title: "Koning van Katoren", description: "Jan Terlouw", dueDate: "210", priority: "true"}]
 class ToDoItem{
     constructor(title, description, dueDate, priority){
@@ -15,13 +17,20 @@ function addToDoItemToProject(event){
     const toDoDescription = document.getElementById("description")
     const toDodueDate = document.getElementById("dueDate")
     const toDoPriority = document.getElementById("priority")
-
+    
     const newToDoItem = new ToDoItem(toDoTitle.value, toDoDescription.value,
         toDodueDate.value, toDoPriority.value)
     // add function that finds active project
-    ToDoList.push(newToDoItem)
+    
+    const currentProject = getCurrentProject()
+    const currentProjectList = currentProject.list
+    currentProjectList.push(newToDoItem)
+    const currentListOfProjects = getCurrentListOfProjects()
+   
     // function that updates dom
     console.log(ToDoList)
+    console.log(currentProject)
+    console.log(currentListOfProjects)
 };
 
 export{

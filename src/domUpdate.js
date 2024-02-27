@@ -119,7 +119,7 @@ titleLabel.textContent = 'Title:'
 
 const titleInput = document.createElement('input')
 titleInput.type = 'text'
-titleInput.id = 'title'
+titleInput.id = 'projecttitle'
 titleInput.name = 'title'
 titleInput.required = true
 
