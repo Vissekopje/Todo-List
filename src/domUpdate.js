@@ -1,5 +1,5 @@
 import {addToDoItemToProject} from './todos'
-import {addProject, getCurrentListOfProjects, getCurrentProject} from './project'
+import {addProject, getCurrentListOfProjects, getCurrentProject, currentProject} from './project'
 
 const content = document.getElementById('content')
 
@@ -173,10 +173,12 @@ const projectContainer = document.getElementById('myprojects')
 while (projectContainer.firstChild){
     projectContainer.removeChild(projectContainer.lastChild)
 }
+projectContainer.textContent = "My Projects"
 let indexNumber = 0
 const currentListOfProjects = getCurrentListOfProjects()
  currentListOfProjects.forEach((project) => {
-    const projectWrapper = document.createElement("div")
+    const projectWrapper = document.createElement("a")
+    projectWrapper.href = "#"
     projectWrapper.classList.add('projectwrapper')
     projectWrapper.dataset.index = indexNumber
 
@@ -191,6 +193,8 @@ const currentListOfProjects = getCurrentListOfProjects()
     projectContainer.appendChild(projectWrapper)
     indexNumber++
  })
+ document.querySelectorAll('.projectwrapper').forEach(project => 
+        project.addEventListener('click', () => clickDisplayToDos(project.dataset.index)))
 }
 
 function displayToDos(){
@@ -198,6 +202,7 @@ function displayToDos(){
     while (todoContainer.firstChild){
         todoContainer.removeChild(todoContainer.lastChild)
     }
+    todoContainer.textContent = "To-do"
     let indexNumber = 0
     const currentProject = getCurrentProject()
     const currentProjectList = currentProject.list
@@ -228,6 +233,13 @@ function displayToDos(){
         indexNumber++
     })
 }
+
+function clickDisplayToDos(index){
+    const clickedProject = getCurrentListOfProjects()[index]    
+    currentProject = clickedProject
+    displayToDos()
+}
+
 
 // function that is called when new project is added
 

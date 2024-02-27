@@ -35,5 +35,6 @@ export{
     Project,
     addProject,
     getCurrentProject,
-    getCurrentListOfProjects
+    getCurrentListOfProjects,
+    currentProject
 }
