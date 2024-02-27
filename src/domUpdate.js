@@ -1,5 +1,5 @@
 import {addToDoItemToProject} from './todos'
-import {addProject, getCurrentListOfProjects} from './project'
+import {addProject, getCurrentListOfProjects, getCurrentProject} from './project'
 
 const content = document.getElementById('content')
 
@@ -174,7 +174,7 @@ while (projectContainer.firstChild){
     projectContainer.removeChild(projectContainer.lastChild)
 }
 let indexNumber = 0
- const currentListOfProjects = getCurrentListOfProjects()
+const currentListOfProjects = getCurrentListOfProjects()
  currentListOfProjects.forEach((project) => {
     const projectWrapper = document.createElement("div")
     projectWrapper.classList.add('projectwrapper')
@@ -191,6 +191,42 @@ let indexNumber = 0
     projectContainer.appendChild(projectWrapper)
     indexNumber++
  })
+}
+
+function displayToDos(){
+    const  todoContainer = document.getElementById('todos')
+    while (todoContainer.firstChild){
+        todoContainer.removeChild(todoContainer.lastChild)
+    }
+    let indexNumber = 0
+    const currentProject = getCurrentProject()
+    const currentProjectList = currentProject.list
+    currentProjectList.forEach((todo) => {
+        const toDoCard = document.createElement('div')
+        toDoCard.classList.add('todocard')
+        toDoCard.dataset.index = indexNumber
+
+        const titleTodo = document.createElement('div')
+        titleTodo.textContent = `${todo.title}`
+
+        const descriptionToDo = document.createElement('div')
+        descriptionToDo.textContent = `${todo.description}`
+
+        const dueDateToDo = document.createElement('div')
+        dueDateToDo.textContent = `${todo.date}`
+
+        const priorityToDo = document.createElement('div')
+        priorityToDo.textContent = `${todo.priority}`
+
+        toDoCard.appendChild(titleTodo)
+        toDoCard.appendChild(descriptionToDo)
+        toDoCard.appendChild(dueDateToDo)
+        toDoCard.appendChild(priorityToDo)
+
+        todoContainer.appendChild(toDoCard)
+
+        indexNumber++
+    })
 }
 
 // function that is called when new project is added
@@ -210,5 +246,6 @@ let indexNumber = 0
 export{
     showToDoForm,
     showProjectForm,
-    displayProjects
+    displayProjects,
+    displayToDos
 }
