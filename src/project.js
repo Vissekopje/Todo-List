@@ -1,3 +1,5 @@
+import {displayProjects} from "./domUpdate"
+
 let ProjectList = []
 
 class Project{
@@ -21,12 +23,11 @@ function addProject(event){
     const projectColor = document.getElementById("color")
     
     const newProject = new Project(projectTitle.value, projectColor.value, [])
-    // add function that finds active project
+    // add function that updates active project
     currentProject = newProject
     ProjectList.push(newProject)
     // function that updates dom
-    console.log(ProjectList)
-    console.log(currentProject)
+    displayProjects()
 }
 
 

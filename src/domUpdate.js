@@ -1,6 +1,7 @@
-const content = document.getElementById('content')
 import {addToDoItemToProject} from './todos'
-import {addProject} from './project'
+import {addProject, getCurrentListOfProjects} from './project'
+
+const content = document.getElementById('content')
 
 function showToDoForm(){
 const toDoFormContainer = document.createElement('div')
@@ -167,6 +168,31 @@ projectContainer.appendChild(form)
 content.appendChild(projectContainer)
 }
 
+function displayProjects(){
+const projectContainer = document.getElementById('myprojects')
+while (projectContainer.firstChild){
+    projectContainer.removeChild(projectContainer.lastChild)
+}
+let indexNumber = 0
+ const currentListOfProjects = getCurrentListOfProjects()
+ currentListOfProjects.forEach((project) => {
+    const projectWrapper = document.createElement("div")
+    projectWrapper.classList.add('projectwrapper')
+    projectWrapper.dataset.index = indexNumber
+
+    const titleProject = document.createElement('div')
+    const colorProject = document.createElement('div')
+
+    titleProject.textContent = `${project.title}`
+    colorProject.textContent = `${project.color}`
+
+    projectWrapper.appendChild(titleProject)
+    projectWrapper.appendChild(colorProject)
+    projectContainer.appendChild(projectWrapper)
+    indexNumber++
+ })
+}
+
 // function that is called when new project is added
 
 // function that is called when new to do item is added
@@ -183,5 +209,6 @@ content.appendChild(projectContainer)
 
 export{
     showToDoForm,
-    showProjectForm
+    showProjectForm,
+    displayProjects
 }
