@@ -1,5 +1,5 @@
 import {getCurrentProject, getCurrentListOfProjects} from './project'
-import {displayToDos} from './domUpdate'
+import {displayToDos, clearContent} from './domUpdate'
 
 const ToDoList = [{title: "Koning van Katoren", description: "Jan Terlouw", dueDate: "210", priority: "true"}]
 class ToDoItem{
@@ -14,6 +14,7 @@ class ToDoItem{
 function addToDoItemToProject(event){
     // add variables for input from user
     event.preventDefault()
+   
     const toDoTitle = document.getElementById("title")
     const toDoDescription = document.getElementById("description")
     const toDodueDate = document.getElementById("dueDate")
@@ -29,6 +30,7 @@ function addToDoItemToProject(event){
     const currentListOfProjects = getCurrentListOfProjects()
    
     // function that updates dom
+    clearContent()
     displayToDos()
 };
 

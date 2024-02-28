@@ -4,6 +4,7 @@ import {addProject, getCurrentListOfProjects, getCurrentProject, currentProject}
 const content = document.getElementById('content')
 
 function showToDoForm(){
+content.classList.add("visible")
 const toDoFormContainer = document.createElement('div')
 const form = document.createElement('form')
 form.className = 'todoform'
@@ -110,6 +111,7 @@ content.appendChild(toDoFormContainer)
 
 
 function showProjectForm(){
+content.classList.add("visible")
 const projectContainer = document.createElement('div')
 const form = document.createElement('form')
 form.className = 'projectform'
@@ -181,18 +183,19 @@ const currentListOfProjects = getCurrentListOfProjects()
     projectWrapper.href = "#"
     projectWrapper.classList.add('projectwrapper')
     projectWrapper.dataset.index = indexNumber
+    projectWrapper.style.color = `${project.color}`
 
     const titleProject = document.createElement('div')
     const colorProject = document.createElement('div')
-
+    
     titleProject.textContent = `${project.title}`
-    colorProject.textContent = `${project.color}`
 
     projectWrapper.appendChild(titleProject)
     projectWrapper.appendChild(colorProject)
     projectContainer.appendChild(projectWrapper)
     indexNumber++
  })
+
  document.querySelectorAll('.projectwrapper').forEach(project => 
         project.addEventListener('click', () => clickDisplayToDos(project.dataset.index)))
 }
@@ -218,8 +221,8 @@ function displayToDos(){
         descriptionToDo.textContent = `${todo.description}`
 
         const dueDateToDo = document.createElement('div')
-        dueDateToDo.textContent = `${todo.date}`
-
+        dueDateToDo.textContent = `${todo.dueDate}`
+        
         const priorityToDo = document.createElement('div')
         priorityToDo.textContent = `${todo.priority}`
 
@@ -233,13 +236,19 @@ function displayToDos(){
         indexNumber++
     })
 }
-
+// function that is called when a project is clicked
 function clickDisplayToDos(index){
     const clickedProject = getCurrentListOfProjects()[index]    
     currentProject = clickedProject
     displayToDos()
 }
 
+function clearContent(){
+    while (content.firstChild){
+        content.removeChild(content.lastChild)
+    }
+    content.classList.remove("visible")
+}
 
 // function that is called when new project is added
 
@@ -259,5 +268,6 @@ export{
     showToDoForm,
     showProjectForm,
     displayProjects,
-    displayToDos
+    displayToDos,
+    clearContent
 }

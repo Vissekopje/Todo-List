@@ -1,4 +1,4 @@
-import {displayProjects} from "./domUpdate"
+import {displayProjects, clearContent} from "./domUpdate"
 
 let ProjectList = []
 
@@ -19,6 +19,8 @@ const getCurrentProject = () => currentProject
 
 function addProject(event){
     event.preventDefault()
+    const content = document.getElementById('content')
+    content.classList.remove("visible")
     const projectTitle = document.getElementById("projecttitle")
     const projectColor = document.getElementById("color")
     
@@ -28,6 +30,7 @@ function addProject(event){
     ProjectList.push(newProject)
     // function that updates dom
     displayProjects()
+    clearContent()
 }
 
 
