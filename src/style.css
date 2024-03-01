@@ -100,3 +100,77 @@ body{
     border-left: 2px solid red;
     border-radius: 10px;
 }
+
+.checkboxcontainer input {
+    border-radius: 25px;
+    display: flex;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+.checkmark {
+    display: flex;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    justify-content: space-evenly;
+    border-radius: 25px;
+  }
+  .todocard.low .checkmark{
+    border: solid 1px green; 
+    background-color: rgba(1, 252, 1, 0.377)
+  }
+  .todocard.medium .checkmark{
+    border: solid 1px orange;
+    background-color: rgba(255, 166, 0, 0.37)
+  }
+  .todocard.high .checkmark{
+    border: solid 1px red;
+    background-color: rgba(255, 0, 0, 0.363);
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkboxcontainer:hover input ~ .checkmark {
+    background-color: #fffefe;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .todocard.low .checkboxcontainer input:checked ~ .checkmark {
+    background-color: green
+  }
+  
+  .todocard.medium .checkboxcontainer input:checked ~ .checkmark {
+    background-color: orange
+  }
+
+  .todocard.high .checkboxcontainer input:checked ~ .checkmark {
+    background-color: red
+  }
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkboxcontainer input:checked ~ .checkmark:after {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkboxcontainer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

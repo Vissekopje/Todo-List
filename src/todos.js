@@ -1,5 +1,5 @@
 import {getCurrentProject, getCurrentListOfProjects} from './project'
-import {displayToDos, clearContent, setPriority} from './domUpdate'
+import {displayToDos, clearContent} from './domUpdate'
 
 const ToDoList = [{title: "Koning van Katoren", description: "Jan Terlouw", dueDate: "210", priority: "true"}]
 class ToDoItem{

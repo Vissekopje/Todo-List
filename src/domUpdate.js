@@ -215,6 +215,18 @@ function displayToDos(){
         toDoCard.classList.add('todocard')
         toDoCard.dataset.index = indexNumber
 
+        const checkBoxToDoContainer = document.createElement('label')
+        checkBoxToDoContainer.classList.add('checkboxcontainer')
+        
+        const checkBoxToDoInput = document.createElement('input')
+        checkBoxToDoInput.type = 'checkbox'
+
+        const checkBoxToDoSpan = document.createElement('span')
+        checkBoxToDoSpan.classList.add('checkmark')
+
+        checkBoxToDoContainer.appendChild(checkBoxToDoInput)
+        checkBoxToDoContainer.appendChild(checkBoxToDoSpan)
+
         const titleTodo = document.createElement('div')
         titleTodo.textContent = `${todo.title}`
 
@@ -224,7 +236,7 @@ function displayToDos(){
         const dueDateToDo = document.createElement('div')
         dueDateToDo.textContent = `${todo.dueDate}`
 
-
+        toDoCard.appendChild(checkBoxToDoContainer)
         toDoCard.appendChild(titleTodo)
         toDoCard.appendChild(descriptionToDo)
         toDoCard.appendChild(dueDateToDo)
@@ -284,6 +296,5 @@ export{
     showProjectForm,
     displayProjects,
     displayToDos,
-    clearContent,
-    setPriority
+    clearContent
 }
