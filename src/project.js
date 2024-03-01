@@ -1,4 +1,4 @@
-import {displayProjects, clearContent} from "./domUpdate"
+import {displayProjects, clearContent, displayToDos} from "./domUpdate"
 
 let ProjectList = []
 
@@ -30,6 +30,7 @@ function addProject(event){
     ProjectList.push(newProject)
     // function that updates dom
     displayProjects()
+    displayToDos()
     clearContent()
 }
 

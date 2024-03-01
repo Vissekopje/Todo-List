@@ -1,7 +1,8 @@
-import {addToDoItemToProject} from './todos'
+import {addToDoItemToProject, updateToDo} from './todos'
 import {addProject, getCurrentListOfProjects, getCurrentProject, currentProject} from './project'
 
 const content = document.getElementById('content')
+const addToDoItemToProjectHandler = (event) => addToDoItemToProject(event) 
 
 function showToDoForm(){
 content.classList.add("visible")
@@ -28,10 +29,9 @@ const descriptionLabel = document.createElement('label');
 descriptionLabel.htmlFor = 'description'
 descriptionLabel.textContent = 'Description:'
 
-const descriptionInput = document.createElement('input')
-descriptionInput.type = 'text'
-descriptionInput.id = 'description'
+const descriptionInput = document.createElement('textarea')
 descriptionInput.name = 'description'
+descriptionInput.id = 'description'
 descriptionInput.required = false
 
 const descriptionRow = document.createElement('div')
@@ -85,14 +85,14 @@ priorityRow.appendChild(prioritySelect)
 
 const confirmButton = document.createElement('button')
 confirmButton.type = 'submit'
-confirmButton.class = 'submit-todo'
+confirmButton.classList.add('submit-todo')
 confirmButton.textContent = 'Submit'
 
 const cancelButton = document.createElement('button')
-cancelButton.class = 'cancel-todo'
+cancelButton.classList.add('cancel-todo')
 cancelButton.textContent = 'Cancel'
 
-confirmButton.addEventListener('click', (event) => addToDoItemToProject(event))
+confirmButton.addEventListener('click', addToDoItemToProjectHandler)
 
 const confirmCancelRow = document.createElement('div')
 confirmCancelRow.className = 'form-row'
@@ -233,7 +233,7 @@ function displayToDos(){
         const titleTodo = document.createElement('div')
         titleTodo.textContent = `${todo.title}`
 
-        const descriptionToDo = document.createElement('div')
+        const descriptionToDo = document.createElement('span')
         const descriptionText = setDiscription(`${todo.description}`)
         descriptionToDo.textContent = descriptionText
 
@@ -253,6 +253,8 @@ function displayToDos(){
 
         indexNumber++
     })
+    document.querySelectorAll('.todocard').forEach(todo => 
+        todo.addEventListener('click', () => editToDo(todo.dataset.index)))
 }
 // function that is called when a project is clicked
 function clickDisplayToDos(index){
@@ -295,6 +297,29 @@ function setDiscription(description){
     }
  }
 
+ function editToDo(index){
+    showToDoForm()
+
+    const confirmButton = document.querySelector('.submit-todo')
+    confirmButton.removeEventListener('click', addToDoItemToProjectHandler)
+
+    const titleForm = document.getElementById("title")
+    const descriptionForm = document.getElementById("description")
+    const dueDateForm = document.getElementById("dueDate")
+    const priorityForm = document.getElementById("priority")
+
+    const currentProject = getCurrentProject()
+    const currentProjectToDoList = currentProject.list
+    const clickedToDo = currentProjectToDoList[index]
+
+    titleForm.value = `${clickedToDo.title}`
+    descriptionForm.textContent = `${clickedToDo.description}`
+    dueDateForm.value = `${clickedToDo.dueDate}`
+    priorityForm.value = `${clickedToDo.priority}`
+
+    confirmButton.addEventListener('click', (event) => updateToDo(event, index))
+ 
+ }
 // function that is called when new project is added
 
 // function that is called when new to do item is added

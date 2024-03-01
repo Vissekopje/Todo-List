@@ -75,10 +75,22 @@ body{
     padding: 10px;
     font-size: 16px;
 }
+.form-row textarea {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+
+  min-height: 200px;
+  margin-bottom: 10px;
+  padding: 7px;
+  resize: none;
+}
 
 #todos{
     padding-left: 20%;
-    padding-right: 25%;
+    padding-right: 20%;
 }
 
 .todocard{
@@ -116,8 +128,9 @@ body{
     font-weight: bold;
     padding-bottom: 5px;
 }
-.informationcontainer div:nth-child(2),
+.informationcontainer span:nth-child(2),
 .informationcontainer div:nth-child(3){
+  padding-left: 15px;
     color: grey;
     font-size: 14px;
     padding-bottom: 3px;

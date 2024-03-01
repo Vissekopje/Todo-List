@@ -34,9 +34,27 @@ function addToDoItemToProject(event){
     displayToDos()
 };
 
+function updateToDo(event, index){
+    event.preventDefault()
+    const toDoTitle = document.getElementById("title")
+    const toDoDescription = document.getElementById("description")
+    const toDodueDate = document.getElementById("dueDate")
+    const toDoPriority = document.getElementById("priority")
+
+    const updatedToDoItem = new ToDoItem(toDoTitle.value, toDoDescription.value,
+        toDodueDate.value, toDoPriority.value)
+    
+    const currentProject = getCurrentProject()
+    const currentProjectList = currentProject.list
+    currentProjectList.splice(index, 1, updatedToDoItem)
+
+    clearContent()
+    displayToDos()
+}
 
 export{
     ToDoItem,
     addToDoItemToProject,
-    ToDoList
+    ToDoList,
+    updateToDo
 }
