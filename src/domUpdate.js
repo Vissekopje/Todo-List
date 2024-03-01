@@ -234,7 +234,8 @@ function displayToDos(){
         titleTodo.textContent = `${todo.title}`
 
         const descriptionToDo = document.createElement('div')
-        descriptionToDo.textContent = `${todo.description}`
+        const descriptionText = setDiscription(`${todo.description}`)
+        descriptionToDo.textContent = descriptionText
 
         const dueDateToDo = document.createElement('div')
         dueDateToDo.textContent = `${todo.dueDate}`
@@ -281,6 +282,18 @@ function setPriority(toDoCard, priority){
         return
     }
 }
+
+function setDiscription(description){
+    if (description.length < 120){
+        return description
+    }
+    else if (description.length >= 120){
+        return `${description.slice(0, 120)}` + "..."
+    }
+    else {
+        return "Error"
+    }
+ }
 
 // function that is called when new project is added
 
