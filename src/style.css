@@ -76,4 +76,27 @@ body{
     font-size: 16px;
 }
 
+.todos{
+    display: grid;
 
+}
+
+.todocard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.todocard.low{
+    border-left: 2px solid green;
+    border-radius: 10px;
+}
+
+.todocard.medium{
+    border-left: 2px solid orange;
+    border-radius: 10px;
+}
+
+.todocard.high{
+    border-left: 2px solid red;
+    border-radius: 10px;
+}

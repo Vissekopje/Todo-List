@@ -72,7 +72,7 @@ mediumOption.value = 'medium'
 
 const highOption = document.createElement('option')
 highOption.textContent = 'High'
-highOption.value = 'High'
+highOption.value = 'high'
 
 prioritySelect.appendChild(lowOption)
 prioritySelect.appendChild(mediumOption)
@@ -194,6 +194,7 @@ const currentListOfProjects = getCurrentListOfProjects()
     projectWrapper.appendChild(colorProject)
     projectContainer.appendChild(projectWrapper)
     indexNumber++
+    console.log(currentListOfProjects)
  })
 
  document.querySelectorAll('.projectwrapper').forEach(project => 
@@ -222,16 +223,15 @@ function displayToDos(){
 
         const dueDateToDo = document.createElement('div')
         dueDateToDo.textContent = `${todo.dueDate}`
-        
-        const priorityToDo = document.createElement('div')
-        priorityToDo.textContent = `${todo.priority}`
+
 
         toDoCard.appendChild(titleTodo)
         toDoCard.appendChild(descriptionToDo)
         toDoCard.appendChild(dueDateToDo)
-        toDoCard.appendChild(priorityToDo)
 
         todoContainer.appendChild(toDoCard)
+
+        setPriority(toDoCard, `${todo.priority}`)
 
         indexNumber++
     })
@@ -248,6 +248,21 @@ function clearContent(){
         content.removeChild(content.lastChild)
     }
     content.classList.remove("visible")
+}
+
+function setPriority(toDoCard, priority){
+    if(priority === "high"){
+        toDoCard.classList.add("high")
+        return
+    }
+    else if(priority === "medium"){
+        toDoCard.classList.add("medium")
+        return
+    }
+    else if(priority === "low"){
+        toDoCard.classList.add("low")
+        return
+    }
 }
 
 // function that is called when new project is added
@@ -269,5 +284,6 @@ export{
     showProjectForm,
     displayProjects,
     displayToDos,
-    clearContent
+    clearContent,
+    setPriority
 }
