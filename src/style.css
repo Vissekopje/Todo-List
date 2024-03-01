@@ -76,29 +76,18 @@ body{
     font-size: 16px;
 }
 
-.todos{
-    display: grid;
-
+#todos{
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .todocard{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.todocard.low{
-    border-left: 2px solid green;
-    border-radius: 10px;
-}
-
-.todocard.medium{
-    border-left: 2px solid orange;
-    border-radius: 10px;
-}
-
-.todocard.high{
-    border-left: 2px solid red;
-    border-radius: 10px;
+    grid-template-columns: 50px 5fr;
+    justify-items: start;
+    align-items: center;
+    padding: 0px;
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.548);
 }
 
 .checkboxcontainer input {
@@ -110,6 +99,29 @@ body{
     width: 0;
   }
 
+.checkboxcontainer{
+    grid-row: 1 / 3;
+    grid-column: 1 / 2;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.informationcontainer{
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.informationcontainer div:first-child{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.informationcontainer div:nth-child(2),
+.informationcontainer div:nth-child(3){
+    color: grey;
+    font-size: 14px;
+    padding-bottom: 3px;
+}
 .checkmark {
     display: flex;
     height: 25px;

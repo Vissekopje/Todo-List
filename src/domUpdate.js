@@ -217,7 +217,7 @@ function displayToDos(){
 
         const checkBoxToDoContainer = document.createElement('label')
         checkBoxToDoContainer.classList.add('checkboxcontainer')
-        
+
         const checkBoxToDoInput = document.createElement('input')
         checkBoxToDoInput.type = 'checkbox'
 
@@ -226,6 +226,9 @@ function displayToDos(){
 
         checkBoxToDoContainer.appendChild(checkBoxToDoInput)
         checkBoxToDoContainer.appendChild(checkBoxToDoSpan)
+
+        const informationContainer = document.createElement('div')
+        informationContainer.classList.add('informationcontainer')
 
         const titleTodo = document.createElement('div')
         titleTodo.textContent = `${todo.title}`
@@ -236,10 +239,12 @@ function displayToDos(){
         const dueDateToDo = document.createElement('div')
         dueDateToDo.textContent = `${todo.dueDate}`
 
+        informationContainer.appendChild(titleTodo)
+        informationContainer.appendChild(descriptionToDo)
+        informationContainer.appendChild(dueDateToDo)
+
         toDoCard.appendChild(checkBoxToDoContainer)
-        toDoCard.appendChild(titleTodo)
-        toDoCard.appendChild(descriptionToDo)
-        toDoCard.appendChild(dueDateToDo)
+        toDoCard.appendChild(informationContainer)
 
         todoContainer.appendChild(toDoCard)
 
