@@ -12,13 +12,13 @@ form.className = 'todoform'
 
 const titleLabel = document.createElement('label');
 titleLabel.htmlFor = 'title'
-titleLabel.textContent = 'Title:'
 
 const titleInput = document.createElement('input')
 titleInput.type = 'text'
 titleInput.id = 'title'
 titleInput.name = 'title'
 titleInput.required = true
+titleInput.placeholder = "Task Title"
 
 const titleRow = document.createElement('div')
 titleRow.className = 'form-row'
@@ -27,12 +27,12 @@ titleRow.appendChild(titleInput)
 
 const descriptionLabel = document.createElement('label');
 descriptionLabel.htmlFor = 'description'
-descriptionLabel.textContent = 'Description:'
 
 const descriptionInput = document.createElement('textarea')
 descriptionInput.name = 'description'
 descriptionInput.id = 'description'
 descriptionInput.required = false
+descriptionInput.placeholder = "Description"
 
 const descriptionRow = document.createElement('div')
 descriptionRow.className = 'form-row'
@@ -42,6 +42,7 @@ descriptionRow.appendChild(descriptionInput)
 const dueDateLabel = document.createElement('label');
 dueDateLabel.htmlFor = 'dueDate'
 dueDateLabel.textContent = 'Due date:'
+dueDateLabel.placeholder = 'Due Date'
 
 const dueDateInput = document.createElement('input')
 dueDateInput.type = 'date'
@@ -253,8 +254,8 @@ function displayToDos(){
 
         indexNumber++
     })
-    document.querySelectorAll('.todocard').forEach(todo => 
-        todo.addEventListener('click', () => editToDo(todo.dataset.index)))
+    document.querySelectorAll('.informationcontainer').forEach(todo => 
+        todo.addEventListener('click', () => editToDo(todo.parentElement.dataset.index)))
 }
 // function that is called when a project is clicked
 function clickDisplayToDos(index){
