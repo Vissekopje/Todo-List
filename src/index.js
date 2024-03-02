@@ -1,7 +1,8 @@
 import './style.css';
 import {ToDoItem} from './todos'
-import {Project} from './project'
-import {showToDoForm, showProjectForm, displayProjects} from './domUpdate'
+import {currentProject, getCurrentProject, setProjectList} from './project'
+import {showToDoForm, showProjectForm, displayProjects, displayToDos} from './domUpdate'
+import { populateStorage } from './user';
 
 const toDoButton = document.querySelector('.addtodo')
 toDoButton.addEventListener('click', showToDoForm)
@@ -9,12 +10,12 @@ toDoButton.addEventListener('click', showToDoForm)
 const projectButton = document.querySelector('.addproject')
 projectButton.addEventListener('click', showProjectForm)
 
-console.log('apple juicer')
-const apple = new ToDoItem("d", 'd', '2', '346')
-const pear = new Project('Cleo', 'purple')
+if(!localStorage.getItem("userProjects")){
+    populateStorage()
+}
+else{
+    setProjectList(JSON.parse(localStorage.getItem("userProjects")))
+    displayToDos()
+    displayProjects()
+}
 
-
-console.log(apple)
-console.log(pear)
-
-displayProjects()

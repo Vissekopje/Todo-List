@@ -34,11 +34,16 @@ function addProject(event){
     clearContent()
 }
 
+function setProjectList(userProjects){
+    ProjectList = userProjects
+    currentProject = ProjectList[0]
+}
 
 export{
     Project,
     addProject,
     getCurrentProject,
     getCurrentListOfProjects,
-    currentProject
+    currentProject,
+    setProjectList
 }

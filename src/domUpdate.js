@@ -1,6 +1,8 @@
 import {addToDoItemToProject, updateToDo} from './todos'
 import {addProject, getCurrentListOfProjects, getCurrentProject, currentProject} from './project'
 import deleteSrc from './images/delete.svg'
+import {populateStorage} from './user'
+
 const content = document.getElementById('content')
 const addToDoItemToProjectHandler = (event) => addToDoItemToProject(event) 
 
@@ -195,8 +197,9 @@ const currentListOfProjects = getCurrentListOfProjects()
     indexNumber++
  })
 
- document.querySelectorAll('.projectwrapper').forEach(project => 
-        project.addEventListener('click', () => clickDisplayToDos(project.dataset.index)))
+    document.querySelectorAll('.projectwrapper').forEach(project => 
+            project.addEventListener('click', () => clickDisplayToDos(project.dataset.index)))
+    populateStorage()
 }
 
 function displayToDos(){
@@ -207,6 +210,7 @@ function displayToDos(){
     todoContainer.textContent = "To-do"
     let indexNumber = 0
     const currentProject = getCurrentProject()
+    console.log(currentProject)
     const currentProjectList = currentProject.list
     currentProjectList.forEach((todo) => {
         const toDoCard = document.createElement('div')
@@ -270,6 +274,7 @@ function displayToDos(){
         todo.addEventListener('click', () => editToDo(todo.parentElement.dataset.index)))
     document.querySelectorAll('.deletecontainer').forEach(todo =>
         todo.addEventListener("click", () => deleteToDo(todo.parentElement.dataset.index)))
+    populateStorage()
 }
 // function that is called when a project is clicked
 function clickDisplayToDos(index){
@@ -333,27 +338,22 @@ function setDiscription(description){
     priorityForm.value = `${clickedToDo.priority}`
 
     confirmButton.addEventListener('click', (event) => updateToDo(event, index))
- 
  }
 
  function deleteToDo(index){
     const currentProject = getCurrentProject()
     const currentProjectToDoList = currentProject.list
+    
     currentProjectToDoList.splice(index, 1)
-    console.log(currentProjectToDoList)
+
     displayToDos()
  }
-// function that is called when new project is added
+// 
 
-// function that is called when new to do item is added
 
-// function that is called when to do item is checked on/off
+
 
 // function that is called when a project is clicked
-
-// function that is called when to do item is clicked
-
-// function that is called when an item is deleted
 
 // function that is called when a project is deleted (might add pop-up)
 

@@ -1,5 +1,6 @@
 import {getCurrentProject, getCurrentListOfProjects} from './project'
 import {displayToDos, clearContent} from './domUpdate'
+import {populateStorage} from './user'
 
 const ToDoList = [{title: "Koning van Katoren", description: "Jan Terlouw", dueDate: "210", priority: "true"}]
 class ToDoItem{
@@ -47,7 +48,8 @@ function updateToDo(event, index){
     const currentProject = getCurrentProject()
     const currentProjectList = currentProject.list
     currentProjectList.splice(index, 1, updatedToDoItem)
-
+    
+    populateStorage()
     clearContent()
     displayToDos()
 }
