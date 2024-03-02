@@ -192,6 +192,7 @@ header button{
     padding-bottom: 5px;
 }
 .informationcontainer{
+    text-align: left;
     padding-bottom: 5px;
     padding-top: 5px;
 }
@@ -202,9 +203,8 @@ header button{
     font-weight: bold;
     padding-bottom: 5px;
 }
-.informationcontainer span:nth-child(2),
+.informationcontainer p:nth-child(2),
 .informationcontainer div:nth-child(3){
-  padding-left: 15px;
     color: grey;
     font-size: 14px;
     padding-bottom: 3px;

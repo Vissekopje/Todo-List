@@ -1,6 +1,6 @@
 import {addToDoItemToProject, updateToDo} from './todos'
 import {addProject, getCurrentListOfProjects, getCurrentProject, currentProject} from './project'
-
+import deleteSrc from './images/delete.svg'
 const content = document.getElementById('content')
 const addToDoItemToProjectHandler = (event) => addToDoItemToProject(event) 
 
@@ -187,15 +187,12 @@ const currentListOfProjects = getCurrentListOfProjects()
     projectWrapper.style.color = `${project.color}`
 
     const titleProject = document.createElement('div')
-    const colorProject = document.createElement('div')
-    
+
     titleProject.textContent = `${project.title}`
 
     projectWrapper.appendChild(titleProject)
-    projectWrapper.appendChild(colorProject)
     projectContainer.appendChild(projectWrapper)
     indexNumber++
-    console.log(currentListOfProjects)
  })
 
  document.querySelectorAll('.projectwrapper').forEach(project => 
@@ -234,7 +231,7 @@ function displayToDos(){
         const titleTodo = document.createElement('div')
         titleTodo.textContent = `${todo.title}`
 
-        const descriptionToDo = document.createElement('span')
+        const descriptionToDo = document.createElement('p')
         const descriptionText = setDiscription(`${todo.description}`)
         descriptionToDo.textContent = descriptionText
 
@@ -245,8 +242,23 @@ function displayToDos(){
         informationContainer.appendChild(descriptionToDo)
         informationContainer.appendChild(dueDateToDo)
 
+        const deleteContainer = document.createElement('div')
+        deleteContainer.classList.add('deletecontainer')
+
+        const deleteA = document.createElement('a')
+        deleteA.href = "#"
+        const deleteIcon = document.createElement('img')
+        deleteIcon.src = `${deleteSrc}`
+        deleteIcon.alt = "Delete button"
+        deleteIcon.height = "25"
+        
+        
+        deleteA.appendChild(deleteIcon)
+        deleteContainer.appendChild(deleteA)
+
         toDoCard.appendChild(checkBoxToDoContainer)
         toDoCard.appendChild(informationContainer)
+        toDoCard.appendChild(deleteContainer)
 
         todoContainer.appendChild(toDoCard)
 
@@ -256,6 +268,8 @@ function displayToDos(){
     })
     document.querySelectorAll('.informationcontainer').forEach(todo => 
         todo.addEventListener('click', () => editToDo(todo.parentElement.dataset.index)))
+    document.querySelectorAll('.deletecontainer').forEach(todo =>
+        todo.addEventListener("click", () => deleteToDo(todo.parentElement.dataset.index)))
 }
 // function that is called when a project is clicked
 function clickDisplayToDos(index){
@@ -320,6 +334,14 @@ function setDiscription(description){
 
     confirmButton.addEventListener('click', (event) => updateToDo(event, index))
  
+ }
+
+ function deleteToDo(index){
+    const currentProject = getCurrentProject()
+    const currentProjectToDoList = currentProject.list
+    currentProjectToDoList.splice(index, 1)
+    console.log(currentProjectToDoList)
+    displayToDos()
  }
 // function that is called when new project is added
 
